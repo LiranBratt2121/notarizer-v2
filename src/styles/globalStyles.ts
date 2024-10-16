@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: ${props => props.theme.fonts.main};
+     overflow-x: hidden;
   }
 
   // Add any other global styles here
