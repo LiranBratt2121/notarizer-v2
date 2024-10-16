@@ -12,7 +12,7 @@ const HomePage = () => {
             subtitle2: "It's free!",
             buttons: [<CTAButton>Get Started</CTAButton>, <CTAButton>Login</CTAButton>],
             images: [
-                { src: "src/pages/homepage/media/heroImage.jpg", alt: "Happy family outside their home" }
+                { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/heroImage.jpg", alt: "Happy family outside their home" }
             ],
             reverse: false,
         },
@@ -22,7 +22,7 @@ const HomePage = () => {
             buttons: [<CTAButton>Landlord</CTAButton>, <CTAButton>Tenant</CTAButton>],
             images: [
                 {
-                    src: "src/pages/homepage/media/section1Image.jpeg",
+                    src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/section1Image.jpeg",
                     alt: "A guy getting a key to his apartment"
                 }
             ],
@@ -33,8 +33,8 @@ const HomePage = () => {
             subtitle: "Why do landlords need to notarize the pictures of the rental?",
             buttons: [<CTAButton>PlaceHolder</CTAButton>, <CTAButton>PlaceHolder</CTAButton>],
             images: [
-                { src: "src/pages/homepage/media/section2Image1.jpeg", alt: "House before" },
-                { src: "src/pages/homepage/media/section2Image2.jpeg", alt: "House after" }
+                { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/section2Image1.jpeg", alt: "House before" },
+                { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/section2Image2.jpeg", alt: "House after" }
             ],
             reverse: true,
         },
@@ -44,7 +44,7 @@ const HomePage = () => {
             buttons: [<CTAButton>PlaceHolder</CTAButton>],
             images: [
                 {
-                    src: "src/pages/homepage/media/section3Image.jpeg",
+                    src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/section3Image.jpeg",
                     alt: "House close-up"
                 }
             ],
