@@ -12,7 +12,7 @@ const HomePage = () => {
             subtitle2: "It's free!",
             buttons: [<CTAButton>Get Started</CTAButton>, <CTAButton>Login</CTAButton>],
             images: [
-                { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/heroImage.jpg", alt: "Happy family outside their home" }
+                { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/heroImage.jpeg", alt: "Happy family outside their home" }
             ],
             reverse: false,
         },
