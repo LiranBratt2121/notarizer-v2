@@ -13,8 +13,10 @@ declare module 'styled-components' {
             main: string;
         };
         fontSizes: {
+            smaller: string;
             small: string;
             medium: string;
+            bigger: string;
             large: string;
         };
     }
@@ -32,8 +34,10 @@ export const theme: DefaultTheme = {
         main: 'Arial, sans-serif',
     },
     fontSizes: {
+        smaller: '0.3rem',
         small: '0.5rem',
         medium: '1rem',
+        bigger: '2rem',
         large: '3rem',
     },
 };
