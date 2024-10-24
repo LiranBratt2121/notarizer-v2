@@ -3,14 +3,16 @@ import Navbar from "../../components/navbar/Navbar";
 import Section from "../../components/section/Section";
 import { SectionProps } from "../../components/section/types";
 import { HomePageContainer, SectionWrapper } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+    const navigate = useNavigate();
     const sections: SectionProps[] = [
         {
             title: "Capture, Notarize, Done!",
             subtitle: "Protect your picture for future evidence!",
             subtitle2: "It's free!",
-            buttons: [<CTAButton>Get Started</CTAButton>, <CTAButton>Login</CTAButton>],
+            buttons: [<CTAButton onClick={() => navigate("/mvp-notarizer/getting-started")}>Get Started</CTAButton>, <CTAButton>Login</CTAButton>],
             images: [
                 { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/heroImage.jpeg", alt: "Happy family outside their home" }
             ],
