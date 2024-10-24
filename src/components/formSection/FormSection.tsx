@@ -1,9 +1,25 @@
 import { useState } from "react";
-import { ButtonWrapper, ContentWrapper, FormField, FormWrapper, Input, Lable, SectionContainer, SubTitle, Title } from "./styles";
+import {
+    ButtonWrapper,
+    ContentWrapper,
+    FormField,
+    FormWrapper,
+    Input,
+    Lable,
+    SectionContainer,
+    SubTitle,
+    Title
+} from "./styles";
 import { FormSectionProps } from "./types";
 import { InfoButton } from "../buttons/InfoButton";
 
-const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgColor, handleSubmit }) => {
+const FormSection: React.FC<FormSectionProps> = ({
+    title,
+    subTitle,
+    forms,
+    bgColor,
+    handleSubmit
+}) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [data, setData] = useState<Record<string, any>>({});
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -13,7 +29,7 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
         let isValid = true;
         let newErrors: Record<string, string> = {};
 
-        currentFields.forEach(field => {
+        currentFields.forEach((field) => {
             const value = data[field.name];
 
             if (field.required && !value) {
@@ -21,7 +37,7 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
                 isValid = false;
             }
 
-            if (field.type === 'email' && value && !/\S+@\S+\.\S+/.test(value)) {
+            if (field.type === "email" && value && !/\S+@\S+\.\S+/.test(value)) {
                 newErrors[field.name] = "Invalid email format.";
                 isValid = false;
             }
@@ -34,7 +50,7 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
     const handleNext = () => {
         if (validateForm()) {
             if (currentStep < forms.length - 1) {
-                setCurrentStep(curr => curr + 1);
+                setCurrentStep((curr) => curr + 1);
             } else {
                 // Call handleSubmit if it's the last step
                 handleSubmit(data);
@@ -44,18 +60,21 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
 
     const handleBack = () => {
         if (currentStep > 0) {
-            setCurrentStep(curr => curr - 1);
+            setCurrentStep((curr) => curr - 1);
         }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setData(prevData => ({
+
+        // Update state for radio buttons
+        setData((prevData) => ({
             ...prevData,
             [name]: value
         }));
 
-        setErrors(prevErrors => ({
+        // Clear any previous errors for this field
+        setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: ""
         }));
@@ -71,9 +90,9 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
                     {forms[currentStep].map((field, index) => (
                         <FormField key={index}>
                             <Lable>{field.lable}</Lable>
-                            {field.type === 'radio' ? (
+                            {field.type === "radio" ? (
                                 field.options?.map((option, i) => (
-                                    <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
+                                    <div key={i} style={{ display: "flex", alignItems: "center" }}>
                                         <Input
                                             type="radio"
                                             name={field.name}
@@ -82,7 +101,9 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
                                             onChange={handleChange}
                                             id={`${field.name}-${option.value}`} // Unique ID for each radio
                                         />
-                                        <Lable htmlFor={`${field.name}-${option.value}`}>{option.lable}</Lable>
+                                        <Lable htmlFor={`${field.name}-${option.value}`}>
+                                            {option.lable}
+                                        </Lable>
                                     </div>
                                 ))
                             ) : (
@@ -94,13 +115,17 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
                                     onChange={handleChange}
                                 />
                             )}
-                            {errors[field.name] && <span style={{ color: 'red' }}>{errors[field.name]}</span>}
+                            {errors[field.name] && (
+                                <span style={{ color: "red" }}>{errors[field.name]}</span>
+                            )}
                         </FormField>
                     ))}
                 </FormWrapper>
 
                 <ButtonWrapper>
-                    {currentStep > 0 && <InfoButton onClick={handleBack}>Back</InfoButton>}
+                    {currentStep > 0 && (
+                        <InfoButton onClick={handleBack}>Back</InfoButton>
+                    )}
                     <InfoButton onClick={handleNext}>
                         {currentStep === forms.length - 1 ? "Submit" : "Next"}
                     </InfoButton>
