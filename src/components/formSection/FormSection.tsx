@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { ButtonWrapper, ContentWrapper, FormField, FormWrapper, Input, Lable, SectionContainer, SubTitle, Title } from "./styles"
-import { FormSectionProps } from "./types"
+import { useState } from "react";
+import { ButtonWrapper, ContentWrapper, FormField, FormWrapper, Input, Lable, SectionContainer, SubTitle, Title } from "./styles";
+import { FormSectionProps } from "./types";
 import { InfoButton } from "../buttons/InfoButton";
 
 const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgColor, handleSubmit }) => {
@@ -33,8 +33,8 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
 
     const handleNext = () => {
         if (validateForm()) {
-        if (currentStep < forms.length - 1) {
-            setCurrentStep(curr => curr + 1);
+            if (currentStep < forms.length - 1) {
+                setCurrentStep(curr => curr + 1);
             } else {
                 // Call handleSubmit if it's the last step
                 handleSubmit(data);
@@ -46,6 +46,8 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
         if (currentStep > 0) {
             setCurrentStep(curr => curr - 1);
         }
+    };
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setData(prevData => ({
@@ -66,14 +68,35 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
                 <SubTitle>{subTitle}</SubTitle>
 
                 <FormWrapper>
-                    {
-                        forms[currentStep].map((field, index) => (
-                            <FormField key={index}>
-                                <Lable>{field.lable}</Lable>
-                                <Input type={field.type} placeholder={field.placeholder} />
-                            </FormField>
-                        ))
-                    }
+                    {forms[currentStep].map((field, index) => (
+                        <FormField key={index}>
+                            <Lable>{field.lable}</Lable>
+                            {field.type === 'radio' ? (
+                                field.options?.map((option, i) => (
+                                    <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
+                                        <Input
+                                            type="radio"
+                                            name={field.name}
+                                            value={option.value}
+                                            checked={data[field.name] === option.value}
+                                            onChange={handleChange}
+                                            id={`${field.name}-${option.value}`} // Unique ID for each radio
+                                        />
+                                        <Lable htmlFor={`${field.name}-${option.value}`}>{option.lable}</Lable>
+                                    </div>
+                                ))
+                            ) : (
+                                <Input
+                                    type={field.type}
+                                    name={field.name}
+                                    value={data[field.name] || ""}
+                                    placeholder={field.placeholder}
+                                    onChange={handleChange}
+                                />
+                            )}
+                            {errors[field.name] && <span style={{ color: 'red' }}>{errors[field.name]}</span>}
+                        </FormField>
+                    ))}
                 </FormWrapper>
 
                 <ButtonWrapper>
@@ -84,7 +107,7 @@ const FormSection: React.FC<FormSectionProps> = ({ title, subTitle, forms, bgCol
                 </ButtonWrapper>
             </ContentWrapper>
         </SectionContainer>
-    )
-}
+    );
+};
 
-export default FormSection
+export default FormSection;
