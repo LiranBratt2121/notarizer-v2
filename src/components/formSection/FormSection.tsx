@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
     ButtonWrapper,
     ContentWrapper,
+    ErrorText,
     FormField,
     FormWrapper,
     Input,
@@ -116,7 +117,7 @@ const FormSection: React.FC<FormSectionProps> = ({
                                 />
                             )}
                             {errors[field.name] && (
-                                <span style={{ color: "red" }}>{errors[field.name]}</span>
+                                <ErrorText>{errors[field.name]}</ErrorText>
                             )}
                         </FormField>
                     ))}
