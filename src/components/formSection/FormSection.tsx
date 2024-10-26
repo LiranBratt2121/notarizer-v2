@@ -42,6 +42,16 @@ const FormSection: React.FC<FormSectionProps> = ({
                 newErrors[field.name] = "Invalid email format.";
                 isValid = false;
             }
+
+            if (field.type === 'date' && field.required && !value) {
+                newErrors[field.name] = `${field.lable} is required.`;
+                isValid = false;
+            }
+
+            if (field.required && field.name === 'VerifyPassword' && value !== data['Password']) {
+                newErrors[field.name] = "Passwords are not matching!";
+                isValid = false;
+            }
         });
 
         setErrors(newErrors);
@@ -68,7 +78,6 @@ const FormSection: React.FC<FormSectionProps> = ({
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
-        // Update state for radio buttons
         setData((prevData) => ({
             ...prevData,
             [name]: value
@@ -109,7 +118,7 @@ const FormSection: React.FC<FormSectionProps> = ({
                                 ))
                             ) : (
                                 <Input
-                                    type={field.type}
+                                    type={field.type === 'date' ? 'date' : field.type}
                                     name={field.name}
                                     value={data[field.name] || ""}
                                     placeholder={field.placeholder}
