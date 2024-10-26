@@ -9,6 +9,6 @@ interface FormSectionProps {
 type FormContent = Array<Array<{
     required: boolean, name: string; lable: string, type: FormTypeOptions; placeholder?: string, options?: { lable: string, value: string }[]
 }>>;
-type FormTypeOptions = 'text' | 'password' | 'email' | 'number' | 'radio';
+type FormTypeOptions = 'text' | 'password' | 'email' | 'number' | 'radio' | 'date';
 
 export type { FormSectionProps, FormContent };
