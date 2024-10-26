@@ -1,5 +1,5 @@
 interface WebCamProps {
-    handleContiue: () => void;
+    handleContiueInner: Function;
 };
 
 export type { WebCamProps }; 
