@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormSection from '../../components/formSection/FormSection';
 import { FormContent } from '../../components/formSection/types';

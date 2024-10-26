@@ -1,3 +1,4 @@
+import React from "react";
 import { CTAButton } from "../../components/buttons/CTAButton";
 import Navbar from "../../components/navbar/Navbar";
 import Section from "../../components/section/Section";
