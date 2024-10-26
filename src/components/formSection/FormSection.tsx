@@ -116,15 +116,23 @@ const FormSection: React.FC<FormSectionProps> = ({
                                         </Lable>
                                     </div>
                                 ))
-                            ) : (
-                                <Input
-                                    type={field.type === 'date' ? 'date' : field.type}
-                                    name={field.name}
-                                    value={data[field.name] || ""}
-                                    placeholder={field.placeholder}
-                                    onChange={handleChange}
-                                />
-                            )}
+                            ) :
+                                field.type === 'file' ? (
+                                    <Input
+                                        type="file"
+                                        name={field.name}
+                                        accept={field.accept}
+                                        onChange={handleChange}
+                                    />
+                                ) : (
+                                    <Input
+                                        type={field.type === 'date' ? 'date' : field.type}
+                                        name={field.name}
+                                        value={data[field.name] || ""}
+                                        placeholder={field.placeholder}
+                                        onChange={handleChange}
+                                    />
+                                )}
                             {errors[field.name] && (
                                 <ErrorText>{errors[field.name]}</ErrorText>
                             )}
