@@ -14,26 +14,34 @@ const GettingStartedLandlord = () => {
             },
             {
                 lable: "Last Name", type: "text", placeholder: "Enter your last name", name: "Last Name", required: true
-            }
+            },
         ],
         [
             {
-                lable: "birthday", type: "date", name: "birthday", required: true 
+                lable: "birthday", type: "date", name: "birthday", required: true
             }
         ],
         [
             {
                 lable: "Email", type: "email", placeholder: "Enter your email", name: "Email", required: true
+            },
+            {
+                lable: "Phone Number", type: "number", name: "PhoneNumber", required: true, placeholder: "Enter your phone number"
             }
         ],
         [
             {
                 lable: "Password", type: "password", placeholder: "Enter your password", name: "Password", required: true
-            }, 
+            },
             {
                 lable: "verify-Password", type: "password", placeholder: "Verify your password", name: "VerifyPassword", required: true
-            }, 
+            },
         ],
+        [
+            {
+                lable: "Enter ID", name: "ID", required: true, type: "file", accept: "image/*"
+            }
+        ]
     ]
 
     return (
