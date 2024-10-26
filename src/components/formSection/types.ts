@@ -7,8 +7,9 @@ interface FormSectionProps {
 }
 
 type FormContent = Array<Array<{
-    required: boolean, name: string; lable: string, type: FormTypeOptions; placeholder?: string, options?: { lable: string, value: string }[]
+    required: boolean, name: string; lable: string, type: FormTypeOptions; placeholder?: string, accept?: FormAcceptOptions, options?: { lable: string, value: string }[]
 }>>;
-type FormTypeOptions = 'text' | 'password' | 'email' | 'number' | 'radio' | 'date';
+type FormTypeOptions = 'text' | 'password' | 'email' | 'number' | 'radio' | 'date' | 'file';
+type FormAcceptOptions = 'image/*' | 'video/*' | 'audio/*';
 
 export type { FormSectionProps, FormContent };
