@@ -1,6 +1,6 @@
 interface WebCamProps {
     handleContiueInner: Function;
-    toNavigate: string;
+    toNavigate?: string;
 };
 
 export type { WebCamProps }; 

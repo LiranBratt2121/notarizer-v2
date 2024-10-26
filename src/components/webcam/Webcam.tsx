@@ -27,7 +27,10 @@ const WebcamComponent = ({ handleContiueInner, toNavigate  }: WebCamProps)  => {
   const handleContiue = () => {
     console.log(preview ?? "No image in handle continue");
     handleContiueInner(preview);
-    navigate(toNavigate);
+
+    if (toNavigate) {
+      navigate(toNavigate);
+    }
   }
 
   return (
