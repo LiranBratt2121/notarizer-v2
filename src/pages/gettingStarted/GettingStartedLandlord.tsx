@@ -1,3 +1,4 @@
+import React from "react"
 import FormSection from "../../components/formSection/FormSection"
 import { FormContent } from "../../components/formSection/types"
 
@@ -17,13 +18,21 @@ const GettingStartedLandlord = () => {
         ],
         [
             {
+                lable: "birthday", type: "date", name: "birthday", required: true 
+            }
+        ],
+        [
+            {
                 lable: "Email", type: "email", placeholder: "Enter your email", name: "Email", required: true
             }
         ],
         [
             {
                 lable: "Password", type: "password", placeholder: "Enter your password", name: "Password", required: true
-            }
+            }, 
+            {
+                lable: "verify-Password", type: "password", placeholder: "Verify your password", name: "VerifyPassword", required: true
+            }, 
         ],
     ]
 
