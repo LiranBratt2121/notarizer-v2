@@ -5,10 +5,12 @@ import { UseWebcamProps } from '../../hooks/useCamera/types';
 import { CameraButton } from '../buttons/CameraButton';
 import { InfoButton } from '../buttons/InfoButton';
 import { WebCamProps } from './types';
+import { useNavigate } from 'react-router-dom';
 
-const WebcamComponent = ({ handleContiue }: WebCamProps)  => {
+const WebcamComponent = ({ handleContiueInner, toNavigate  }: WebCamProps)  => {
   const { WebcamComponent, capture, handleCameraSwap }: UseWebcamProps = useWebcam();
   const [preview, setPreview] = useState('');
+  const navigate = useNavigate();
 
   const handleCapture = () => {
     const screenshot = capture();
@@ -17,6 +19,15 @@ const WebcamComponent = ({ handleContiue }: WebCamProps)  => {
 
   const handleRetake = () => {
     setPreview("");
+  }
+
+  /**
+    Decorates handleContinue which we got as a parameter.
+  */
+  const handleContiue = () => {
+    console.log(preview ?? "No image in handle continue");
+    handleContiueInner(preview);
+    navigate(toNavigate);
   }
 
   return (
