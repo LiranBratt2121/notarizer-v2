@@ -63,4 +63,9 @@ const ButtonWrapper = styled.div`
     justify-content: space-between;
 `;
 
-export { SectionContainer, ContentWrapper, Title, SubTitle, FormWrapper, FormField, Lable, Input, ButtonWrapper };
+const ErrorText = styled.span`
+    color: red;
+`;
+
+
+export { SectionContainer, ContentWrapper, Title, SubTitle, FormWrapper, FormField, Lable, Input, ButtonWrapper, ErrorText };
