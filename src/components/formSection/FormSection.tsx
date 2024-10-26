@@ -13,6 +13,7 @@ import {
 } from "./styles";
 import { FormSectionProps } from "./types";
 import { InfoButton } from "../buttons/InfoButton";
+import { convertBase64 } from "./utils";
 
 const FormSection: React.FC<FormSectionProps> = ({
     title,
@@ -76,12 +77,23 @@ const FormSection: React.FC<FormSectionProps> = ({
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, type, value, files } = e.target;
 
-        setData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
+        // Save b64 representation instead of file location in Data.
+        if (type === "file" && files?.[0]) {
+            convertBase64(files[0]).then((base64String) => {
+                setData((prevData) => ({
+                    ...prevData,
+                    [name]: base64String
+                }));
+            }).catch((error) => console.error("Failed to convert file to base64:", error));
+        } else {
+            // Update for non-file inputs
+            setData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
 
         // Clear any previous errors for this field
         setErrors((prevErrors) => ({
@@ -89,6 +101,7 @@ const FormSection: React.FC<FormSectionProps> = ({
             [name]: ""
         }));
     };
+
 
     return (
         <SectionContainer bgColor={bgColor ?? "#000000"}>
