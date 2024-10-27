@@ -14,6 +14,7 @@ import {
 import { FormSectionProps } from "./types";
 import { InfoButton } from "../buttons/InfoButton";
 import { convertBase64 } from "./utils";
+import DropDown from "./DropDown";
 
 const FormSection: React.FC<FormSectionProps> = ({
     title,
@@ -65,7 +66,7 @@ const FormSection: React.FC<FormSectionProps> = ({
                 setCurrentStep((curr) => curr + 1);
             } else {
                 // Call handleSubmit if it's the last step
-                handleSubmit(data);
+                handleSubmit(data as any);
             }
         }
     };
@@ -76,8 +77,8 @@ const FormSection: React.FC<FormSectionProps> = ({
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, type, value, files } = e.target;
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, type, value, files } = e.target as HTMLInputElement;
 
         // Save b64 representation instead of file location in Data.
         if (type === "file" && files?.[0]) {
@@ -137,15 +138,24 @@ const FormSection: React.FC<FormSectionProps> = ({
                                         accept={field.accept}
                                         onChange={handleChange}
                                     />
-                                ) : (
-                                    <Input
-                                        type={field.type === 'date' ? 'date' : field.type}
-                                        name={field.name}
-                                        value={data[field.name] || ""}
-                                        placeholder={field.placeholder}
-                                        onChange={handleChange}
-                                    />
-                                )}
+                                ) :
+                                    field.type === 'dropDown' ? (
+                                        field.options && <DropDown
+                                            name={field.name}
+                                            options={field.options}
+                                            value={data[field.name]}
+                                            onChange={handleChange}
+                                        >
+                                        </DropDown>
+                                    ) : (
+                                        <Input
+                                            type={field.type === 'date' ? 'date' : field.type}
+                                            name={field.name}
+                                            value={data[field.name] || ""}
+                                            placeholder={field.placeholder}
+                                            onChange={handleChange}
+                                        />
+                                    )}
                             {errors[field.name] && (
                                 <ErrorText>{errors[field.name]}</ErrorText>
                             )}
