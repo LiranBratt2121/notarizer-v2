@@ -4,6 +4,7 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         colors: {
             primary: string;
+            seconderyPrimary: string
             primaryLight: string;
             seconderyLight: string;
             text: string;
@@ -25,6 +26,7 @@ declare module 'styled-components' {
 export const theme: DefaultTheme = {
     colors: {
         primary: 'black',
+        seconderyPrimary: '#28282B',
         primaryLight: 'white',
         seconderyLight: "WhiteSmoke",
         text: 'white',
