@@ -50,8 +50,13 @@ const FormSection: React.FC<FormSectionProps> = ({
                 isValid = false;
             }
 
-            if (field.required && field.name === 'VerifyPassword' && value !== data['Password']) {
+            if (field.required && field.name.toLowerCase() === 'verifypassword' && value !== data['password']) {
                 newErrors[field.name] = "Passwords are not matching!";
+                isValid = false;
+            }
+
+            if (field.required && isValid && (data['password'] as string).length <= 6) {
+                newErrors[field.name] = "Password is shorter than 6 characters";
                 isValid = false;
             }
         });
