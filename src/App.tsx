@@ -7,7 +7,8 @@ import GettingStartedLandlord from './pages/gettingStarted/GettingStartedLandlor
 import HomePage from './pages/homepage/HomePage';
 import GettingStarted from './pages/gettingStarted/Choice'
 import GettingStartedTenant from './pages/gettingStarted/GettingStartedTenant';
-import LandlordDashboard from './pages/dashboard/landlordDashboard';
+import Dashboard from './pages/dashboard/Dashboard';
+import Login from './pages/login/Login';
 
 const App: React.FC = () => {
   return (
@@ -17,8 +18,9 @@ const App: React.FC = () => {
           <Route path="/mvp-notarizer/" element={<HomePage />} />
           <Route path="/mvp-notarizer/getting-started-landlord" element={<GettingStartedLandlord />} />
           <Route path="/mvp-notarizer/getting-started-tenant" element={<GettingStartedTenant />} />
+          <Route path="/mvp-notarizer/login" element={<Login />} />
           <Route path="/mvp-notarizer/getting-started" element={<GettingStarted />} />
-          <Route path="/mvp-notarizer/landlordDashboard" element={<LandlordDashboard />} />
+          <Route path="/mvp-notarizer/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />
