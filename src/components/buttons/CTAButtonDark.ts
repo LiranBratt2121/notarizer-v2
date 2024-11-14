@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 
 export const DarkCTAButton = styled.button`
-    background-color: ${props => props.theme.colors.primary}; 
-    color: ${props => props.theme.colors.text}; 
+    background-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.text};
     padding: 1rem 2rem;
     font-size: ${props => props.theme.fontSizes.medium};
     font-weight: bold;
-    border: 5px solid ${props => props.theme.colors.primaryLight}; 
+    border: 5px solid ${props => props.theme.colors.primaryLight};
     border-radius: 0.8rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -18,5 +18,10 @@ export const DarkCTAButton = styled.button`
 
     &:active {
         transform: scale(0.98);
+    }
+
+    @media (max-width: 768px) {
+        font-size: ${props => props.theme.fontSizes.small};
+        padding: 0.8rem 1.5rem;
     }
 `;
