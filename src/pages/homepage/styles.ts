@@ -1,24 +1,30 @@
 import { styled } from "styled-components";
 
 const HomePageContainer = styled.div`
-  scroll-snap-type: y mandatory;  
-  overflow-y: scroll; 
-  height: 100vh; 
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  
   &::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE and Edge */
-  -ms-overflow-style: none;  /* Internet Explorer and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
 `;
 
 const SectionWrapper = styled.div`
-  scroll-snap-align: start;  
+  scroll-snap-align: start;
   min-height: 100vh;
   background-color: ${props => props.theme.colors.primary};
+  padding: 0;
+
+  @media (max-width: 768px) {
+    min-height: auto; // Allow content to adjust dynamically
+    padding: 20px 0;
+  }
 `;
 
-export { HomePageContainer, SectionWrapper }
+export { HomePageContainer, SectionWrapper };
