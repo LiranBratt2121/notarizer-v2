@@ -36,8 +36,8 @@ export const theme: DefaultTheme = {
         main: 'Arial, sans-serif',
     },
     fontSizes: {
-        smaller: '0.3rem',
-        small: '0.5rem',
+        smaller: '0.55rem',
+        small: '0.8rem',
         medium: '1rem',
         bigger: '2rem',
         large: '3rem',
