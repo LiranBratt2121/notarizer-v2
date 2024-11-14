@@ -1,5 +1,15 @@
 import React from "react";
-import { ButtonWrapper, ContentWrapper, ImageWrapper, Subtitle, Title, Image, SectionContainer } from "./styles";
+import {
+    ButtonWrapper,
+    ContentWrapper,
+    ImageWrapper,
+    Subtitle,
+    Title,
+    Image,
+    SectionContainer,
+    DesktopOnly,
+    MobileOnly
+} from "./styles";
 import { SectionProps } from "./types";
 
 const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, images, bgColor, reverse, children }) => {
@@ -9,9 +19,9 @@ const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, 
             <Subtitle hasSubtitle2={!!subtitle2}>{subtitle}</Subtitle>
             <Subtitle hasSubtitle2={!!subtitle2}>{subtitle2}</Subtitle>
             <ButtonWrapper>
-                {buttons.map((button, index) => (
+                {buttons.map((button, index) =>
                     React.cloneElement(button, { key: index })
-                ))}
+                )}
             </ButtonWrapper>
         </ContentWrapper>
     );
@@ -25,18 +35,28 @@ const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, 
     );
 
     return (
-        <SectionContainer bgColor={bgColor ?? "#000000"}>
-            {reverse ? (
-                <>
-                    {ImageContent}
-                    {Content}
-                </>
-            ) : (
-                <>
-                    {Content}
-                    {ImageContent}
-                </>
-            )}
+        <SectionContainer bgColor={bgColor ?? "black"}>
+            {/* Desktop layout */}
+            <DesktopOnly>
+                {reverse ? (
+                    <>
+                        {ImageContent}
+                        {Content}
+                    </>
+                ) : (
+                    <>
+                        {Content}
+                        {ImageContent}
+                    </>
+                )}
+            </DesktopOnly>
+
+            {/* Mobile layout (Content always on top) */}
+            <MobileOnly>
+                {Content}
+                {ImageContent}
+            </MobileOnly>
+
             {children}
         </SectionContainer>
     );
