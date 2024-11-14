@@ -6,7 +6,6 @@ export const CTAButton = styled.button`
     padding: 1rem 2rem;
     font-size: ${props => props.theme.fontSizes.medium};
     font-weight: bold;
-    border: 5px;
     border-radius: 0.8rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -19,4 +18,9 @@ export const CTAButton = styled.button`
     &:active {
         transform: scale(0.98);
     }
-`
+
+    @media (max-width: 768px) {
+        font-size: ${props => props.theme.fontSizes.small};
+        padding: 0.8rem 1.5rem;
+    }
+`;
