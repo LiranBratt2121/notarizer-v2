@@ -67,5 +67,9 @@ const ErrorText = styled.span`
     color: red;
 `;
 
+const LoadingText = styled.span`
+    color: '#ccc';
+`
 
-export { SectionContainer, ContentWrapper, Title, SubTitle, FormWrapper, FormField, Lable, Input, ButtonWrapper, ErrorText };
+
+export { SectionContainer, ContentWrapper, Title, SubTitle, FormWrapper, FormField, Lable, Input, ButtonWrapper, ErrorText, LoadingText };
