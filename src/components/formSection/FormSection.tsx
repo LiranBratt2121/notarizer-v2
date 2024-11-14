@@ -7,6 +7,7 @@ import {
     FormWrapper,
     Input,
     Lable,
+    LoadingText,
     SectionContainer,
     SubTitle,
     Title
@@ -26,6 +27,7 @@ const FormSection: React.FC<FormSectionProps> = ({
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [data, setData] = useState<Record<string, any>>({});
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const validateForm = () => {
         const currentFields = forms[currentStep];
@@ -70,8 +72,18 @@ const FormSection: React.FC<FormSectionProps> = ({
             if (currentStep < forms.length - 1) {
                 setCurrentStep((curr) => curr + 1);
             } else {
-                // Call handleSubmit if it's the last step
-                handleSubmit(data as any);
+                try {
+                    setIsLoading(true);
+                    handleSubmit(data as any);
+                } catch (error) {
+                    console.error("Form submission failed:", error);
+                    setErrors(prev => ({
+                        ...prev,
+                        submit: "Failed to submit form. Please try again."
+                    }));
+                } finally {
+                    setIsLoading(false);
+                }
             }
         }
     };
@@ -176,6 +188,7 @@ const FormSection: React.FC<FormSectionProps> = ({
                         {currentStep === forms.length - 1 ? "Submit" : "Next"}
                     </InfoButton>
                 </ButtonWrapper>
+                {isLoading && <LoadingText>Loading...</LoadingText>}
             </ContentWrapper>
         </SectionContainer>
     );
