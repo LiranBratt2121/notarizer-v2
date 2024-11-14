@@ -13,7 +13,7 @@ const HomePage = () => {
             title: "Capture, Notarize, Done!",
             subtitle: "Protect your picture for future evidence!",
             subtitle2: "It's free!",
-            buttons: [<CTAButton onClick={() => navigate("/mvp-notarizer/getting-started")}>Get Started</CTAButton>, <CTAButton>Login</CTAButton>],
+            buttons: [<CTAButton onClick={() => navigate("/mvp-notarizer/getting-started")}>Get Started</CTAButton>, <CTAButton onClick={() => navigate("/mvp-notarizer/login")}>Login</CTAButton>],
             images: [
                 { src: "https://storage.googleapis.com/mvp-notarizer/homepage/media/heroImage.jpeg", alt: "Happy family outside their home" }
             ],
