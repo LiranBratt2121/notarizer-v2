@@ -1,92 +1,74 @@
 import styled from "styled-components";
 
-// Dashboard container with dark and cool style, mobile responsive
 export const DashboardContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 1.5rem;
+    padding: 4rem 2rem;
     background-color: ${props => props.theme.colors.seconderyPrimary};
     min-height: 100vh;
-    border-radius: 8px;
-    max-width: 90%;
-    margin: auto;
+    box-sizing: border-box;
     color: ${props => props.theme.colors.text};
     font-family: ${props => props.theme.fonts.main};
     
     @media (max-width: 768px) {
-        padding: 2rem 1rem; // Reduced padding on smaller screens
+        padding: 2rem 1rem;
     }
 `;
 
-// Property list styling
+export const ContentWrapper = styled.div`
+    flex: 1;
+    width: 100%;
+    max-width: 50rem;
+    padding: 2rem;
+    background-color: ${props => props.theme.colors.primary};
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+export const Title = styled.h2`
+    font-size: ${props => props.theme.fontSizes.large};
+    margin-bottom: 1.5rem;
+    color: ${props => props.theme.colors.text};
+    text-align: center;
+`;
+
 export const PropertyList = styled.ul`
     list-style: none;
     padding: 0;
     width: 100%;
     margin: 2rem 0;
-    
-    @media (max-width: 768px) {
-        margin: 1.5rem 0; // Reduce margins on mobile
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 `;
 
-// Each property item styling
 export const PropertyItem = styled.li`
-    background: ${props => props.theme.colors.seconderyLight};
-    padding: 1rem;
-    margin: 0.5rem 0;
-    border-radius: 5px;
+    background: ${props => props.theme.colors.primaryLight};
+    padding: 1.5rem;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-size: ${props => props.theme.fontSizes.medium};
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
     @media (max-width: 768px) {
-        padding: 0.8rem; // Reduce padding for smaller screens
-        margin: 0.4rem 0; // Adjust margin
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
     }
 `;
 
-// Button container for layout
-export const ButtonContainer = styled.div`
+export const PropertyInfo = styled.div`
+    font-size: ${props => props.theme.fontSizes.medium};
+    color: ${props => props.theme.colors.textDark};
+`;
+
+export const ButtonGroup = styled.div`
     display: flex;
     gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
     
     @media (max-width: 768px) {
-        gap: 0.8rem; // Reduce gap between buttons on mobile
-    }
-`;
-
-// Button styling with dark and sleek design, mobile-friendly
-export const ButtonWrapper = styled.button`
-    background-color: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.text};
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
-    border: none;
-    font-size: ${props => props.theme.fontSizes.small};
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    
-    &:hover {
-        background-color: ${props => props.theme.colors.seconderyPrimary};
-    }
-
-    &:active {
-        transform: scale(0.98);
-    }
-
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px ${props => props.theme.colors.primary};
-    }
-
-    @media (max-width: 768px) {
-        font-size: ${props => props.theme.fontSizes.smaller}; // Adjust font size for mobile
-        padding: 0.6rem 1.2rem; // Smaller padding on mobile
+        justify-content: stretch;
     }
 `;
