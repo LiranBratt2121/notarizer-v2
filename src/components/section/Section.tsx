@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import { SectionProps } from "./types";
 
-const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, images, bgColor, reverse, children }) => {
+const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, images, bgcolor, reverse, children }) => {
     const Content = (
         <ContentWrapper>
             <Title>{title}</Title>
@@ -35,7 +35,7 @@ const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, 
     );
 
     return (
-        <SectionContainer bgColor={bgColor ?? "black"}>
+        <SectionContainer bgcolor={bgcolor ?? "black"}>
             {/* Desktop layout */}
             <DesktopOnly>
                 {reverse ? (

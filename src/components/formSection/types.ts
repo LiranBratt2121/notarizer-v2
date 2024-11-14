@@ -2,11 +2,11 @@ interface FormSectionProps {
     title: string;
     subTitle: string;
     forms: FormContent
-    bgColor?: string;
+    bgcolor?: string;
     handleSubmit: (e: Record<string, any>) => void;
 }
 
-interface DropDownProps { 
+interface DropDownProps {
     name: string
     options: FormOptions[];
     value: string;

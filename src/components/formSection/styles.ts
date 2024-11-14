@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const SectionContainer = styled.section<{ bgColor: string }>`
+const SectionContainer = styled.section<{ bgcolor: string }>`
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 4rem 2rem;
-    background-color: ${props => props.bgColor};
+    background-color: ${props => props.bgcolor};
     box-sizing: border-box;
     min-height: 100vh;    
 `;

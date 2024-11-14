@@ -20,7 +20,7 @@ const FormSection: React.FC<FormSectionProps> = ({
     title,
     subTitle,
     forms,
-    bgColor,
+    bgcolor,
     handleSubmit
 }) => {
     const [currentStep, setCurrentStep] = useState<number>(0);
@@ -110,7 +110,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 
 
     return (
-        <SectionContainer bgColor={bgColor ?? "#000000"}>
+        <SectionContainer bgcolor={bgcolor ?? "#000000"}>
             <ContentWrapper>
                 <Title>{title}</Title>
                 <SubTitle>{subTitle}</SubTitle>

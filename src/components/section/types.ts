@@ -7,7 +7,7 @@ interface SectionProps {
         src: string;
         alt: string;
     }[];
-    bgColor?: string;
+    bgcolor?: string;
     reverse: boolean;
     children?: React.ReactNode;
 };
