@@ -3,7 +3,7 @@ interface FormSectionProps {
     subTitle: string;
     forms: FormContent
     bgColor?: string;
-    handleSubmit: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    handleSubmit: (e: Record<string, any>) => void;
 }
 
 interface DropDownProps { 
