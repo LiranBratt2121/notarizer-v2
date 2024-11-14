@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from './types';
-import { Logo, NavbarContainer, NavItem, NavLinks } from './styles';
+import { Logo, NavbarContainer, NavLinks, NavItem, HamburgerIcon, MobileNav } from './styles';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
     const links: NavLink[] = [
@@ -13,16 +14,23 @@ const Navbar: React.FC = () => {
         { id: 4, name: 'Dashboard', navigate: "/mvp-notarizer/dashboard" },
     ];
 
+    const toggleMenu = () => setIsOpen(!isOpen);
+
+    const handleLinkClick = (navigateTo?: string) => {
+        if (navigateTo) navigate(navigateTo);
+        setIsOpen(false);
+    };
+
     return (
         <NavbarContainer>
             <Logo>Notarizer</Logo>
-            <NavLinks>
-                {
-                    links.map((li) => (
-                        <NavItem key={li.id} onClick={() => navigate(li.navigate ?? "")}> {li.name} </NavItem>
-                    ))
-                }
+            <HamburgerIcon onClick={toggleMenu}>&#9776;</HamburgerIcon>
+            <NavLinks isOpen={isOpen}>
+                {links.map((li) => (
+                    <NavItem key={li.id} onClick={() => handleLinkClick(li.navigate)}>{li.name}</NavItem>
+                ))}
             </NavLinks>
+            {isOpen && <MobileNav onClick={toggleMenu} />}
         </NavbarContainer>
     );
 };
