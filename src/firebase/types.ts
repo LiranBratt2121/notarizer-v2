@@ -20,14 +20,15 @@ type Property = {
     landlordId: string; // Link to User (landlord)
     tenantId: string | null; // Link to User (tenant) if assigned
     address: Address; // Reference to the Address type
-    images: ImageData[]; // References to images in Firebase Storage
+    images?: ImageData[]; // References to images in Firebase Storage
     tenantAuthorized: boolean; // If true, landlord and tenant images are hidden from each other
+    isVisible: boolean; // If true displays the property.
 };
 
 type Address = {
     street: string;
     city: string;
-    country: string;
+    countryOrRegion: string;
     zipCode: string;
 };
 
