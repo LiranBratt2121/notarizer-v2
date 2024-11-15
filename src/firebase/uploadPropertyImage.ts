@@ -1,10 +1,16 @@
 import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
-import { ImageData } from "./types"; 
-import { doc, getFirestore, setDoc } from "firebase/firestore";
-import firebase from "firebase/compat/app";
+import { ImageData } from "./types";
+import { arrayUnion, doc, getFirestore, setDoc } from "firebase/firestore";
 
 const uploadPropertyImage = async (propertyId: string, imageBase64: string, uploaderId: string, uploaderRole: 'landlord' | 'tenant'): Promise<void> => {
     const storage = getStorage();
+
+    if (!propertyId) {
+        console.error("No propertyId provided");
+        alert("No propertyId provided, try again");
+        return;
+    }
+
     const storagePath = `properties/${propertyId}/images/${Date.now()}`; // Use a timestamp for unique image paths
     const imageRef = ref(storage, storagePath);
 
@@ -22,7 +28,7 @@ const uploadPropertyImage = async (propertyId: string, imageBase64: string, uplo
         };
 
         const propertyRef = doc(getFirestore(), "properties", propertyId);
-        await setDoc(propertyRef, { images: firebase.firestore.FieldValue.arrayUnion(imageData) }, { merge: true }); // Add image to existing images array
+        await setDoc(propertyRef, { images: arrayUnion(imageData) }, { merge: true }); // Add image to existing images array
         console.log("Image uploaded and saved to property successfully.");
     } catch (error) {
         console.error("Error uploading image: ", error);
