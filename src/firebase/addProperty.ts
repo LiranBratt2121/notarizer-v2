@@ -1,4 +1,4 @@
-import { getFirestore, setDoc, doc, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, addDoc, updateDoc } from "firebase/firestore";
 import { Property } from "./types";
 
 const addProperty = async (propertyData: Omit<Property, "id">): Promise<void> => {
@@ -14,7 +14,9 @@ const addProperty = async (propertyData: Omit<Property, "id">): Promise<void> =>
     }
 
     try {
-        await setDoc(doc(propertiesRef), propertyData);
+        const ref = await addDoc(propertiesRef, { ...propertyData});
+        await updateDoc(ref, {id: ref.id});
+
         console.log("Property added successfully.");
         alert("Property added successfully.");
     } catch (error) {
