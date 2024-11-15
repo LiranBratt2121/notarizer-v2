@@ -42,8 +42,7 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
                 <Text>{address.street}</Text>
                 <Text>{`${address.city}, ${address.countryOrRegion} ${address.zipCode}`}</Text>
             </PropertyDetails>
-
-            <DarkCTAButton onClick={() => navigate("/mvp-notarizer/add-property")}>
+            <DarkCTAButton onClick={() => navigate(`/mvp-notarizer/notarize/${property.id}`)}>
                 Add More Images
             </DarkCTAButton>
 
