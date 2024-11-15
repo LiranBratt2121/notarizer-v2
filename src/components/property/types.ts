@@ -1,7 +1,7 @@
 import { User, Property } from "../../firebase/types";
 
 export interface PropertyProps {
-    landlord: User;
+    landlord: User | null;
     tenant: User | null;
     property: Property;
 }
