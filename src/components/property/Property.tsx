@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PropertyProps } from './types';
 import {
     PropertyContainer,
@@ -8,6 +8,8 @@ import {
     ImageContainer,
     PropertyImage,
     Text,
+    FullscreenModal,
+    FullscreenImage,
 } from './property.styles';
 import { DarkCTAButton } from '../buttons/CTAButtonDark';
 import { format } from 'date-fns';
@@ -16,6 +18,15 @@ import { useNavigate } from 'react-router-dom';
 const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
     const navigate = useNavigate();
     const { address, images, tenantAuthorized } = property;
+    const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+
+    const handleImageClick = (imageSrc: string) => {
+        setFullscreenImage(imageSrc);
+    };
+
+    const closeFullscreenModal = () => {
+        setFullscreenImage(null);
+    };
 
     const filteredImages = images?.filter(image => {
         if (tenantAuthorized) return true;
@@ -57,6 +68,8 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
                                     const target = e.target as HTMLImageElement;
                                     target.src = 'https://storage.googleapis.com/assets/placeholder.jpg';
                                 }}
+
+                                onClick={() => handleImageClick(image.storagePath)}
                             />
                             <Text color="#ccc">Uploaded: {formatDate(image.uploadedAt)}</Text>
                             <Text color="#ccc">By: {image.uploaderRole}</Text>
@@ -66,6 +79,11 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
                     <Text>No images available for this property</Text>
                 )}
             </PropertyImages>
+            {fullscreenImage && (
+                <FullscreenModal onClick={closeFullscreenModal}>
+                    <FullscreenImage src={fullscreenImage} alt="Fullscreen" />
+                </FullscreenModal>
+            )}
         </PropertyContainer>
     );
 };
