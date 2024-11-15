@@ -58,22 +58,22 @@ export const ImageContainer = styled.div`
 `;
 
 export const PropertyImage = styled.img`
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-    border: 1px solid ${props => props.theme.colors.seconderyLight};
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  border: 1px solid ${props => props.theme.colors.seconderyLight};
 
-    @media (min-width: 768px) {
-        width: 100px;
-        height: 100px;
-    }
+  @media (min-width: 768px) {
+    width: 150px;
+    height: 150px;
+  }
 
-    @media (min-width: 1024px) {
-        width: 120px;
-        height: 120px;
-    }
+  @media (min-width: 1024px) {
+    width: 180px;
+    height: 180px;
+  }
 `;
 
 export const Text = styled.p`
@@ -81,4 +81,24 @@ export const Text = styled.p`
     font-weight: 'normal';
     color: ${props => props.color || props.theme.colors.textDark};
     margin: 0;
+`;
+
+export const FullscreenModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  cursor: pointer;
+`;
+
+export const FullscreenImage = styled.img`
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 `;
