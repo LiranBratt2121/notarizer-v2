@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import FormSection from "../../components/formSection/FormSection";
 import { FormContent } from "../../components/formSection/types";
 import registerUser, { RegisterUserData } from "../../firebase/registerUser";
 import { useNavigate } from "react-router-dom";
 
 const GettingStartedTenant = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (data: Record<string, any>) => {
+        setIsLoading(true);
+
         try {
             await registerUser(data as RegisterUserData, "tenant");
             alert(data.firstName + " Successfully registered!");
         } catch (error) {
             console.error("Registration error: ", error);
             alert("Error during registration: " + error);
+        } finally {
+            setIsLoading(false);
+            navigate('/dashboard');
         }
-
-        navigate('/dashboard');
     };
 
     const forms: FormContent = [
@@ -57,12 +61,17 @@ const GettingStartedTenant = () => {
     ];
 
     return (
-        <FormSection
-            forms={forms}
-            title="Tenant Registration"
-            subTitle="Enter your information"
-            handleSubmit={handleSubmit}
-        />
+        <>
+            {isLoading && (
+                <div>Loading...</div>
+            )}
+            <FormSection
+                forms={forms}
+                title="Tenant Registration"
+                subTitle="Enter your information"
+                handleSubmit={handleSubmit}
+            />
+        </>
     );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormSection from "../../components/formSection/FormSection";
 import { FormContent } from "../../components/formSection/types";
 import { countries } from 'country-data-list';
@@ -6,18 +6,21 @@ import registerUser, { RegisterUserData } from "../../firebase/registerUser";
 import { useNavigate } from "react-router-dom";
 
 const GettingStartedLandlord = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (data: Record<string, any>) => {
+        setIsLoading(true);
         try {
             await registerUser(data as RegisterUserData, "landlord");
             alert(data.firstName + " Successfully registered!");
         } catch (error) {
             console.error("Registration error: ", error);
             alert("Error during registration: " + error);
+        } finally {
+            setIsLoading(false);
+            navigate('/dashboard');
         }
-
-        navigate('/dashboard');
     };
 
     const forms: FormContent = [
@@ -75,12 +78,17 @@ const GettingStartedLandlord = () => {
     ];
 
     return (
-        <FormSection
-            forms={forms}
-            title="Create an Account"
-            subTitle="Enter your information"
-            handleSubmit={handleSubmit}
-        />
+        <>
+            {isLoading && (
+                <div>Loading...</div>
+            )}
+            <FormSection
+                forms={forms}
+                title="Create an Account"
+                subTitle="Enter your information"
+                handleSubmit={handleSubmit}
+            />
+        </>
     );
 };
 
