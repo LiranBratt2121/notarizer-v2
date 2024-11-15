@@ -7,7 +7,6 @@ import {
     PropertyList,
     PropertyItem,
     PropertyInfo,
-    ButtonGroup,
 } from "./styles";
 import fetchProperties from "../../firebase/fetchProperties";
 import { getUserRole } from "../../firebase/getUserRole";
@@ -15,7 +14,7 @@ import { Property } from "../../firebase/types";
 import softDeleteProperty from "../../firebase/softDeleteProperty";
 import { waitForAuth } from "../../firebase/waitForAuth";
 import { CTAButton } from "../../components/buttons/CTAButton";
-import { InfoButton } from "../../components/buttons/InfoButton";
+import PropertyCard from "../../components/property/PropertyCard";
 
 const Dashboard: React.FC = () => {
     const [properties, setProperties] = useState<Property[]>([]);
@@ -43,6 +42,7 @@ const Dashboard: React.FC = () => {
                 }
 
                 setIsLandlord(role === "landlord");
+
                 const loadedProperties = await fetchProperties(userId, role === "landlord");
                 setProperties(loadedProperties);
             } catch (error) {
@@ -82,11 +82,14 @@ const Dashboard: React.FC = () => {
             <ContentWrapper>
                 <Title>{isLandlord ? "Landlord Dashboard" : "Tenant Dashboard"}</Title>
 
-                {isLandlord && (
-                    <CTAButton onClick={() => navigate("/mvp-notarizer/add-property")}>
-                        Add Property
-                    </CTAButton>
-                )}
+                {/* { Temp div for centering until I add more buttons }  */}
+                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    {isLandlord && (
+                        <CTAButton onClick={() => navigate("/mvp-notarizer/add-property")}>
+                            Add Property
+                        </CTAButton>
+                    )}
+                </div>
 
                 <PropertyList>
                     {properties.length === 0 ? (
@@ -95,25 +98,16 @@ const Dashboard: React.FC = () => {
                         </PropertyItem>
                     ) : (
                         properties.map(property => (
-                            <PropertyItem key={property.id}>
-                                <PropertyInfo>
-                                    {property.address.street}, {property.address.city}
-                                </PropertyInfo>
-                                <ButtonGroup>
-                                    {isLandlord && (
-                                        <InfoButton
-                                            className="delete"
-                                            onClick={() => handleDelete(property.id)}
-                                        >
-                                            Delete
-                                        </InfoButton>
-                                    )}
-                                    <InfoButton className="view">View</InfoButton>
-                                </ButtonGroup>
-                            </PropertyItem>
+                            <PropertyCard
+                                key={property.id}
+                                handleDelete={() => handleDelete(property.id)}
+                                isLandlord={isLandlord ?? false}
+                                property={property}
+                            />
                         ))
                     )}
                 </PropertyList>
+
             </ContentWrapper>
         </DashboardContainer>
     );
