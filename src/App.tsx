@@ -10,6 +10,8 @@ import GettingStartedTenant from './pages/gettingStarted/GettingStartedTenant';
 import Dashboard from './pages/dashboard/Dashboard';
 import Login from './pages/login/Login';
 import AddProperty from './pages/addProperty/AddProperty';
+import PropertyDisplay from './pages/propertyDisplay/PropertyDisplay';
+import Notarize from './pages/notarize/notarize';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +25,9 @@ const App: React.FC = () => {
           <Route path="/mvp-notarizer/getting-started" element={<GettingStarted />} />
           <Route path="/mvp-notarizer/dashboard" element={<Dashboard />} />
           <Route path="/mvp-notarizer/add-property" element={<AddProperty />} />
+          <Route path="/mvp-notarizer/notarize" element={<Notarize />} />
+          <Route path="/mvp-notarizer/property/:propertyId" element={<PropertyDisplay />} />
+          <Route path="/mvp-notarizer/notarize/:propertyId" element={<Notarize />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />
