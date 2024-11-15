@@ -21,7 +21,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, isLandlord, handl
                         Delete
                     </InfoButton>
                 )}
-                <InfoButton className="view" onClick={() => navigate(`/mvp-notarizer/property/${property.id}`)}>View</InfoButton>
+                <InfoButton className="view" onClick={() => navigate(`/property/${property.id}`)}>View</InfoButton>
             </ButtonGroup>
         </PropertyItem>
     )

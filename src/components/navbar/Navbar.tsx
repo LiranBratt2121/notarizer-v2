@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
         { id: 1, name: 'Home' },
         { id: 2, name: 'Services' },
         { id: 3, name: 'About' },
-        { id: 4, name: 'Dashboard', navigate: "/mvp-notarizer/dashboard" },
+        { id: 4, name: 'Dashboard', navigate: "/dashboard" },
     ];
 
     const toggleMenu = () => setIsOpen(!isOpen);

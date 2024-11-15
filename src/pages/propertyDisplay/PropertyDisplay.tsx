@@ -25,13 +25,13 @@ const PropertyDisplay: React.FC = () => {
 
                 const currentUserId = await waitForAuth();
                 if (!currentUserId) {
-                    navigate("/mvp-notarizer/login");
+                    navigate("/login");
                     return;
                 }
 
                 if (!propertyId) {
                     setError("Property ID is missing");
-                    navigate("/mvp-notarizer/dashboard");
+                    navigate("/dashboard");
                     return;
                 }
 
@@ -43,7 +43,7 @@ const PropertyDisplay: React.FC = () => {
 
                 if (property.landlordId !== currentUserId && property.tenantId !== currentUserId) {
                     setError("You don't have permission to view this property");
-                    navigate("/mvp-notarizer/dashboard");
+                    navigate("/dashboard");
                     return;
                 }
 

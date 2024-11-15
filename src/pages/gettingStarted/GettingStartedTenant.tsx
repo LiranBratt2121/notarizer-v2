@@ -16,7 +16,7 @@ const GettingStartedTenant = () => {
             alert("Error during registration: " + error);
         }
 
-        navigate('/mvp-notarizer/dashboard');
+        navigate('/dashboard');
     };
 
     const forms: FormContent = [

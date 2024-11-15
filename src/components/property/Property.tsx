@@ -42,7 +42,7 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
                 <Text>{address.street}</Text>
                 <Text>{`${address.city}, ${address.countryOrRegion} ${address.zipCode}`}</Text>
             </PropertyDetails>
-            <DarkCTAButton onClick={() => navigate(`/mvp-notarizer/notarize/${property.id}`)}>
+            <DarkCTAButton onClick={() => navigate(`/notarize/${property.id}`)}>
                 Add More Images
             </DarkCTAButton>
 
@@ -55,7 +55,7 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
                                 alt={`Property Image ${index + 1}`}
                                 onError={(e) => {
                                     const target = e.target as HTMLImageElement;
-                                    target.src = 'https://storage.googleapis.com/mvp-notarizer/assets/placeholder.jpg';
+                                    target.src = 'https://storage.googleapis.com/assets/placeholder.jpg';
                                 }}
                             />
                             <Text color="#ccc">Uploaded: {formatDate(image.uploadedAt)}</Text>

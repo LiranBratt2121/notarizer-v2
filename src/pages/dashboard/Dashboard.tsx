@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
                 const userId = await waitForAuth();
 
                 if (!userId) {
-                    navigate("/mvp-notarizer/");
+                    navigate("/");
                     alert("Please sign in before entering the dashboard");
                     return;
                 }
@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
                 const role = await getUserRole(userId);
                 if (!role) {
                     alert("User role not found");
-                    navigate("/mvp-notarizer/");
+                    navigate("/");
                     return;
                 }
 
@@ -48,7 +48,7 @@ const Dashboard: React.FC = () => {
             } catch (error) {
                 console.error("Error initializing dashboard:", error);
                 alert("An error occurred while loading the dashboard");
-                navigate("/mvp-notarizer/");
+                navigate("/");
             } finally {
                 setLoading(false);
             }
@@ -83,9 +83,9 @@ const Dashboard: React.FC = () => {
                 <Title>{isLandlord ? "Landlord Dashboard" : "Tenant Dashboard"}</Title>
 
                 {/* { Temp div for centering until I add more buttons }  */}
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     {isLandlord && (
-                        <CTAButton onClick={() => navigate("/mvp-notarizer/add-property")}>
+                        <CTAButton onClick={() => navigate("/add-property")}>
                             Add Property
                         </CTAButton>
                     )}

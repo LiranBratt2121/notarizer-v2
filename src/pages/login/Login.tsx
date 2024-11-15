@@ -14,14 +14,14 @@ const Login: React.FC = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                navigate('/mvp-notarizer/dashboard');
+                navigate('/dashboard');
             }
             setLoading(false);
         });
 
         return () => unsubscribe();
     }, [auth, navigate]);
-    
+
     const handleSubmit = async (formData: Record<string, string>) => {
         setLoading(true);
 
@@ -29,7 +29,7 @@ const Login: React.FC = () => {
         try {
             await setPersistence(auth, browserLocalPersistence);
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/mvp-notarizer/dashboard');
+            navigate('/dashboard');
         } catch (error) {
             alert('Login failed. Please try again.');
         } finally {

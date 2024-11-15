@@ -22,7 +22,7 @@ const Choice = () => {
     ];
 
     const handleSubmit = (data: Record<string, string>) => {
-        const path = data["whoAreYou"] === "landlord" ? "/mvp-notarizer/getting-started-landlord" : "/mvp-notarizer/getting-started-tenant";
+        const path = data["whoAreYou"] === "landlord" ? "/getting-started-landlord" : "/getting-started-tenant";
         navigate(path);
     };
 

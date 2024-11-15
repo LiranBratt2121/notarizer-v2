@@ -19,7 +19,7 @@ const Notarize = () => {
             const uploaderId = await waitForAuth();
 
             if (!uploaderId) {
-                navigate("/mvp-notarizer/");
+                navigate("/");
                 alert("Please sign in before notarizing");
                 return;
             }
@@ -27,7 +27,7 @@ const Notarize = () => {
             const uploaderRole = await getUserRole(uploaderId);
 
             if (!uploaderRole) {
-                navigate("/mvp-notarizer/");
+                navigate("/");
                 alert("Uploader role was not tenant or landlord. strange!");
                 return;
             }

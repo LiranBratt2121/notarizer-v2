@@ -14,7 +14,7 @@ const AddProperty = () => {
             try {
                 const userId = await waitForAuth();
                 if (!userId) {
-                    navigate("/mvp-notarizer/");
+                    navigate("/");
                     alert("Please sign in before entering the dashboard");
                 }
             } catch (error) {
@@ -30,7 +30,7 @@ const AddProperty = () => {
             const userId = await waitForAuth();
 
             if (!userId) {
-                navigate("/mvp-notarizer/");
+                navigate("/");
                 alert("Please sign in before entering the dashboard");
                 return;
             }
@@ -50,7 +50,7 @@ const AddProperty = () => {
             };
 
             await addProperty(propertyData);
-            navigate("/mvp-notarizer/dashboard");
+            navigate("/dashboard");
         } catch (error) {
             console.error('Error adding property:', error);
         }

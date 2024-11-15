@@ -13,7 +13,7 @@ const findPropertyByAddress = async (address: Address, isLandlord: boolean) => {
     if (!userId) {
         console.log('User is not authenticated Login please.')
         alert('User is not authenticated Login please.')
-        navigate("/mvp-notarizer/");
+        navigate("/");
         return;
     }
 

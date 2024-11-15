@@ -11,23 +11,23 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Login from './pages/login/Login';
 import AddProperty from './pages/addProperty/AddProperty';
 import PropertyDisplay from './pages/propertyDisplay/PropertyDisplay';
-import Notarize from './pages/notarize/notarize';
+import Notarize from './pages/notarize/Notarize';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/mvp-notarizer/" element={<HomePage />} />
-          <Route path="/mvp-notarizer/getting-started-landlord" element={<GettingStartedLandlord />} />
-          <Route path="/mvp-notarizer/getting-started-tenant" element={<GettingStartedTenant />} />
-          <Route path="/mvp-notarizer/login" element={<Login />} />
-          <Route path="/mvp-notarizer/getting-started" element={<GettingStarted />} />
-          <Route path="/mvp-notarizer/dashboard" element={<Dashboard />} />
-          <Route path="/mvp-notarizer/add-property" element={<AddProperty />} />
-          <Route path="/mvp-notarizer/notarize" element={<Notarize />} />
-          <Route path="/mvp-notarizer/property/:propertyId" element={<PropertyDisplay />} />
-          <Route path="/mvp-notarizer/notarize/:propertyId" element={<Notarize />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/getting-started-landlord" element={<GettingStartedLandlord />} />
+          <Route path="/getting-started-tenant" element={<GettingStartedTenant />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/getting-started" element={<GettingStarted />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/add-property" element={<AddProperty />} />
+          <Route path="/notarize" element={<Notarize />} />
+          <Route path="/property/:propertyId" element={<PropertyDisplay />} />
+          <Route path="/notarize/:propertyId" element={<Notarize />} />
         </Routes>
       </BrowserRouter>
       <GlobalStyle />
