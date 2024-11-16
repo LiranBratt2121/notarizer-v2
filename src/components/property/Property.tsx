@@ -12,8 +12,8 @@ import {
     FullscreenImage,
 } from './property.styles';
 import { DarkCTAButton } from '../buttons/CTAButtonDark';
-import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { formatDate } from './utils';
 
 const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
     const navigate = useNavigate();
@@ -33,14 +33,6 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
         if (property.landlordId === landlord?.id) return image.uploaderRole === 'landlord';
         return image.uploaderRole === 'tenant' && image.uploaderId === tenant?.id;
     });
-
-    const formatDate = (dateString: string) => {
-        try {
-            return format(new Date(dateString), 'MMM dd, yyyy HH:mm');
-        } catch {
-            return dateString;
-        }
-    };
 
     return (
         <PropertyContainer>
