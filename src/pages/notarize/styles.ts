@@ -8,6 +8,7 @@ const Title = styled.h1`
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 const AddImageButton = styled.button`
@@ -28,4 +29,14 @@ const AddImageButton = styled.button`
   }
 `;
 
-export { NotarizeContainer, Title, AddImageButton }
+const UploadMessage = styled.div`
+  background-color: ${({ theme }) => theme.colors.seconderyPrimary};
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin: 10px 0;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.primaryLight};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+`;
+
+export { NotarizeContainer, Title, AddImageButton, UploadMessage }
