@@ -16,7 +16,7 @@ const GettingStartedLandlord = () => {
             alert(data.firstName + " Successfully registered!");
         } catch (error) {
             console.error("Registration error: ", error);
-            alert("Error during registration: " + error);
+            alert("Error during registration: " + (error instanceof Error ? error.message : "Unknown error"));
         } finally {
             setIsLoading(false);
             navigate('/dashboard');
