@@ -1,20 +1,14 @@
-// Webcam.tsx
 import React, { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
 import { Camera, RotateCw, Check, X, ArrowLeft } from 'lucide-react';
 import {
-  WebCamContainer,
-  CameraViewport,
-  ButtonWrapper,
-  PreviewImageContainer,
-  PreviewText,
-  ActionBar,
-  StyledButton,
+  WebCamContainer, CameraViewport, ButtonWrapper, PreviewImageContainer, PreviewText, ActionBar, StyledButton,
   CloseButton
 } from './styles';
 import { WebCamProps } from './types';
+import { addWatermark } from './utils';
 
-const WebcamComponent = ({ handleContiueInner, toNavigate, onClose }: WebCamProps) => {
+const WebcamComponent = ({ handleContiueInner, onClose, applyWatermark, watermarkProps }: WebCamProps) => {
   const [preview, setPreview] = useState('');
   const [mode, setMode] = useState('environment');
   const webcamRef = useRef<Webcam>(null);
@@ -27,7 +21,18 @@ const WebcamComponent = ({ handleContiueInner, toNavigate, onClose }: WebCamProp
 
   const handleCapture = () => {
     const screenshot = webcamRef.current?.getScreenshot();
-    setPreview(screenshot ?? "");
+
+    if (applyWatermark && screenshot && watermarkProps) {
+      addWatermark(screenshot, watermarkProps)
+        .then(canvas => setPreview(canvas.toDataURL()))
+        .catch(e => console.error("Error applying watermark:", e));
+    } else {
+      setPreview(screenshot ?? "");
+    }
+  };
+
+  const handleContinue = () => {
+    handleContiueInner(preview);
   };
 
   const handleRetake = () => {
@@ -38,23 +43,9 @@ const WebcamComponent = ({ handleContiueInner, toNavigate, onClose }: WebCamProp
     setMode(mode === 'environment' ? 'user' : 'environment');
   };
 
-  const handleContinue = () => {
-    handleContiueInner(preview);
-    
-    if (toNavigate) {
-      toNavigate();
-    }
-  };
-
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    }  
-  };
-
   return (
     <WebCamContainer>
-      <CloseButton onClick={handleClose}>
+      <CloseButton onClick={() => onClose()}>
         <ArrowLeft size={24} />
       </CloseButton>
 
