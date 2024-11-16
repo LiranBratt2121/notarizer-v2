@@ -41,21 +41,32 @@ const Notarize = () => {
     };
 
     return (
+        <>
         <NotarizeContainer>
             <Title>Upload Property Images</Title>
-            <AddImageButton onClick={() => setShowCamera(true)}>
+                {isUploading && (
+                    <UploadMessage>
+                        Uploading image... Please wait and do not leave this page.
+                    </UploadMessage>
+                )}
+                <AddImageButton
+                    onClick={() => setShowCamera(true)}
+                    disabled={isUploading}
+                >
                 <Camera size={24} />
                 Add Images
             </AddImageButton>
 
-            {showCamera && (
+                {showCamera && uploaderRole && !isUploading && (
                 <WebcamComponent
                     handleContiueInner={handleContinue}
-                    toNavigate={() => navigate(-1)}
                     onClose={() => setShowCamera(false)}
+                        applyWatermark={true}
+                        watermarkProps={{ date: formatDate(new Date().toISOString()), uploaderRole }}
                 />
             )}
         </NotarizeContainer>
+        </>
     );
 };
 
