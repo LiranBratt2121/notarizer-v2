@@ -58,7 +58,7 @@ const FormSection: React.FC<FormSectionProps> = ({
             }
 
             if (field.required && isValid && data['password'] && (data['password'] as string).length < 7) {
-                newErrors[field.name] = "Password is shorter than 6 characters";
+                newErrors[field.name] = "Password should be more than 6 characters.";
                 isValid = false;
             }
 
