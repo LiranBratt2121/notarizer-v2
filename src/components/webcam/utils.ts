@@ -19,15 +19,16 @@ export const addWatermark = (imageSrc: string, { date, uploaderRole }: Watermark
 
             ctx.drawImage(img, 0, 0, img.width, img.height);
 
-            const textColor = "rgba(255, 255, 255, 0.7)";
+            const textColor = "rgba(255, 255, 255, 0.8)";
             const shadowColor = "rgba(0, 0, 0, 0.5)";
-            const fontSize = Math.max(20, Math.round(img.width / 50));
+            const fontSize = Math.max(10, Math.round(img.width / 50));
+
             ctx.font = `bold ${fontSize}px Arial`;
             ctx.textBaseline = "top";
 
             addShadow(ctx, shadowColor);
 
-            write(ctx, "Notarizer", img.width * 0.05, img.height * 0.85, "rgba(33, 33, 33, 0.9)");
+            write(ctx, "Notarizer", img.width * 0.05, img.height * 0.85, "rgba(33, 33, 33, 1)");
             write(ctx, `Uploaded-at: ${date}`, img.width * 0.05, img.height * 0.9, textColor);
             write(ctx, `Uploader-role: ${uploaderRole}`, img.width * 0.05, img.height * 0.95, textColor);
 
