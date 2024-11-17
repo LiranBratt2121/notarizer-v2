@@ -29,8 +29,8 @@ export const addWatermark = (imageSrc: string, { date, uploaderRole }: Watermark
             addShadow(ctx, shadowColor);
 
             write(ctx, "Notarizer", img.width * 0.05, img.height * 0.85, "rgba(33, 33, 33, 1)");
-            write(ctx, `Uploaded-at: ${date}`, img.width * 0.05, img.height * 0.9, textColor);
-            write(ctx, `Uploader-role: ${uploaderRole}`, img.width * 0.05, img.height * 0.95, textColor);
+            write(ctx, `Notorized-at: ${date}`, img.width * 0.05, img.height * 0.9, textColor);
+            write(ctx, `Notorizer-role: ${uploaderRole}`, img.width * 0.05, img.height * 0.95, textColor);
 
             ctx.shadowColor = "transparent";
 
