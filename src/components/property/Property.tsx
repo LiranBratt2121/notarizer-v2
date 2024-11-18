@@ -63,7 +63,7 @@ const Property: React.FC<PropertyProps> = ({ property, landlord, tenant }) => {
 
                                 onClick={() => handleImageClick(image.storagePath)}
                             />
-                            <Text color="#ccc">Uploaded: {formatDate(image.uploadedAt)}</Text>
+                            <Text color="#ccc">Notarized: {formatDate(image.uploadedAt)}</Text>
                             <Text color="#ccc">By: {image.uploaderRole}</Text>
                         </ImageContainer>
                     ))
