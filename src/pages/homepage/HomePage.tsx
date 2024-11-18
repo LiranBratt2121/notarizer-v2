@@ -21,7 +21,7 @@ const HomePage = () => {
         },
         {
             title: "Notarize Your Rental Photos with Ease",
-            subtitle: "Trusted, Certified, Secure. It's free!",
+            subtitle: "Trusted, Certified, Secure.",
             buttons: [<CTAButton>Landlord</CTAButton>, <CTAButton>Tenant</CTAButton>],
             images: [
                 {
