@@ -7,59 +7,52 @@ import {
     Title,
     Image,
     SectionContainer,
-    DesktopOnly,
-    MobileOnly
+    SubtitleContainer,
+    TextContent,
+    ResponsiveWrapper,
+    ImageContainer
 } from "./styles";
 import { SectionProps } from "./types";
+
 
 const Section: React.FC<SectionProps> = ({ title, subtitle, subtitle2, buttons, images, bgcolor, reverse, children }) => {
     const Content = (
         <ContentWrapper>
-            <Title>{title}</Title>
-            <Subtitle hasSubtitle2={!!subtitle2}>{subtitle}</Subtitle>
-            <Subtitle hasSubtitle2={!!subtitle2}>{subtitle2}</Subtitle>
-            <ButtonWrapper>
-                {buttons.map((button, index) =>
-                    React.cloneElement(button, { key: index })
-                )}
-            </ButtonWrapper>
+            <TextContent>
+                <Title>{title}</Title>
+                <SubtitleContainer>
+                    <Subtitle>{subtitle}</Subtitle>
+                    {subtitle2 && <Subtitle>{subtitle2}</Subtitle>}
+                </SubtitleContainer>
+                <ButtonWrapper>
+                    {buttons.map((button, index) =>
+                        React.cloneElement(button, { key: index })
+                    )}
+                </ButtonWrapper>
+            </TextContent>
         </ContentWrapper>
     );
 
     const ImageContent = (
         <ImageWrapper imageCount={images.length}>
             {images.slice(0, 2).map((image, index) => (
-                <Image key={index} src={image.src} alt={image.alt} />
+                <ImageContainer key={index}>
+                    <Image src={image.src} alt={image.alt} />
+                </ImageContainer>
             ))}
         </ImageWrapper>
     );
 
     return (
         <SectionContainer bgcolor={bgcolor ?? "black"}>
-            {/* Desktop layout */}
-            <DesktopOnly>
-                {reverse ? (
-                    <>
-                        {ImageContent}
-                        {Content}
-                    </>
-                ) : (
-                    <>
-                        {Content}
-                        {ImageContent}
-                    </>
-                )}
-            </DesktopOnly>
-
-            {/* Mobile layout (Content always on top) */}
-            <MobileOnly>
+            <ResponsiveWrapper reverse={reverse}>
                 {Content}
                 {ImageContent}
-            </MobileOnly>
-
+            </ResponsiveWrapper>
             {children}
         </SectionContainer>
     );
 };
+
 
 export default Section;
