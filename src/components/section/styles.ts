@@ -73,7 +73,7 @@ const ImageWrapper = styled.div<{ imageCount: number }>`
     flex: 1;
     display: flex;
     gap: clamp(1rem, 2vw, 2rem);
-    max-width: ${props => props.imageCount === 2 ? '50%' : '40%'};
+    max-width: ${props => props.imageCount === 2 ? '45%' : '35%'};
 
     @media (max-width: 768px) {
         max-width: 100%;
