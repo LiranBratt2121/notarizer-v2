@@ -28,13 +28,13 @@ export const addWatermark = (imageSrc: string, { date, uploaderRole }: Watermark
 
             addShadow(ctx, shadowColor);
 
-            write(ctx, "Notarizer", img.width * 0.05, img.height * 0.85, "rgba(33, 33, 33, 1)");
-            write(ctx, `Notorized-at: ${date}`, img.width * 0.05, img.height * 0.9, textColor);
-            write(ctx, `Notorizer-role: ${uploaderRole}`, img.width * 0.05, img.height * 0.95, textColor);
+            write(ctx, "Notarizer", img.width * 0.05, img.height * 0.9, "rgba(33, 33, 33, 1)");
+            write(ctx, `Notorized-at: ${date}`, img.width * 0.05, img.height * 0.93, textColor);
+            write(ctx, `Notorizer-role: ${uploaderRole}`, img.width * 0.05, img.height * 0.96, textColor);
 
             ctx.shadowColor = "transparent";
 
-            resolve(canvas); 
+            resolve(canvas);
             console.log("GOT YOU")
         };
 
@@ -55,3 +55,30 @@ const addShadow = (ctx: CanvasRenderingContext2D, shadowColor: string) => {
     ctx.shadowOffsetY = 2;
     ctx.shadowBlur = 4;
 };
+
+export const isMobile = () => {
+    const isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+    console.log(isMobile.any())
+
+    return isMobile.any();
+}
